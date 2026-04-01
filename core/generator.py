@@ -1,2 +1,6 @@
-def generate(template_name: str, context: dict[str, str]):
-    pass
+from templates.loader import load_template
+
+
+def generate(context: dict[str, str]):
+    template_name = context["template"]
+    template_content = load_template(template_name)
