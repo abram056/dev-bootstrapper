@@ -8,7 +8,7 @@ def get_cli_args():
     )
 
     parser.add_argument(
-        '-c', '--create', metavar='project_type',
+        '-c', '--create', metavar='project_type', choices=['fastapi'],
         required=True, help="Project type"
     )
 
