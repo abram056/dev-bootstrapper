@@ -22,8 +22,8 @@ def generate(context: dict[str, str]):
         rendered_content = render_content(content, context)
         write_file(output_dir, rendered_path, rendered_content)
 
-    create_virtual_env(output_dir)
-    install_dependencies(output_dir)
+    # create_virtual_env(output_dir)
+    # install_dependencies(output_dir)
 
 
 def create_virtual_env(project_path: Path):
