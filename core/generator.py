@@ -1,6 +1,6 @@
 from pathlib import Path
 from engine.file_manager import write_file
-from engine.renderer import render
+from engine.renderer import render_content, render_path
 from templates.loader import load_template
 import subprocess
 import os
@@ -18,8 +18,9 @@ def generate(context: dict[str, str]):
         relative_path = file['path']
         content = file['content']
 
-        rendered_content = render(content, context)
-        write_file(output_dir, relative_path, rendered_content)
+        rendered_path = render_path(relative_path, context)
+        rendered_content = render_content(content, context)
+        write_file(output_dir, rendered_path, rendered_content)
 
     create_virtual_env(output_dir)
     install_dependencies(output_dir)
