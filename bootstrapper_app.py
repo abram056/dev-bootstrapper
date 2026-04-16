@@ -7,6 +7,7 @@ from core.generator import generate
 from core.registry import (
     add_project,
     list_projects,
+    remove_project,
 )
 
 
@@ -56,3 +57,6 @@ if args.command == "create":
 
 elif args.command == "list":
     list_projects()
+
+elif args.command == "remove":
+    remove_project(str(args.name))

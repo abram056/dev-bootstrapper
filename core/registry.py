@@ -55,3 +55,17 @@ def list_projects():
     for i, project in enumerate(data, start=1):
         print(f"{i}. Project Name: {project['Project name']}")
         print(f"     Project Path: {project['Path']}")
+
+
+def remove_project(name: str):
+
+    data = load_projects()
+
+    new_data = [p for p in data if p["Project name"] != name]
+
+    if len(data) == len(new_data):
+        print(f"No project found with name '{name}'")
+        return
+
+    save_projects(new_data)
+    print(f"Removed project: {name}.")
