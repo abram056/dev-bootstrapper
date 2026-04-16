@@ -2,6 +2,7 @@ from pathlib import Path
 import json
 import sys
 import os
+import subprocess
 
 
 def get_regitry_file() -> Path:
@@ -69,3 +70,22 @@ def remove_project(name: str):
 
     save_projects(new_data)
     print(f"Removed project: {name}.")
+
+
+def open_project(name: str):
+    data = load_projects()
+
+    for project in data:
+        if project["Project name"] == name:
+            path = project["Path"]
+
+            if sys.platform.startswith("linux"):
+                subprocess.run(["xdg-open", path])
+            elif sys.platform == "darwin":
+                subprocess.run(["open", path])
+            elif os.name == "nt":
+                os.startfile(path)
+
+            return
+
+    print(f"No project found with name '{name}'")

@@ -13,6 +13,10 @@ def get_cli_args():
 
     remove_parser = subparsers.add_parser("remove", help="Delete project")
 
+    open_parser = subparsers.add_parser(
+        "open", help="Open project folder in file explorer"
+    )
+
     create_parser.add_argument(
         "project_type", choices=["fastapi", "python"], help="Project type"
     )
@@ -22,6 +26,8 @@ def get_cli_args():
     )
 
     remove_parser.add_argument("name")
+
+    open_parser.add_argument("name")
 
     parser.add_argument(
         "-p", "--package", metavar="package_name", required=False, help="Package name"
