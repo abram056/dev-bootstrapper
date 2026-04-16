@@ -6,7 +6,7 @@ import subprocess
 import os
 
 
-def generate(context: dict[str, str]):
+def generate(context: dict[str, str]) -> Path:
     template_name = context["template"]
     project_name = context["project_name"]
 
@@ -24,6 +24,8 @@ def generate(context: dict[str, str]):
 
     # create_virtual_env(output_dir)
     # install_dependencies(output_dir)
+
+    return output_dir
 
 
 def create_virtual_env(project_path: Path):
