@@ -4,6 +4,10 @@ import json
 
 from cli.main import get_cli_args
 from core.generator import generate
+from core.registry import (
+    add_project,
+    list_projects,
+)
 
 
 def get_regitry_file() -> Path:
@@ -32,7 +36,7 @@ def extract_args(args):
         return {
             "template": template_name,
             "project_name": project_name,
-            "package_name": package_name
+            "package_name": package_name,
         }
 
 
@@ -43,35 +47,12 @@ def normalize(name: str):
     return name
 
 
-def load_projects(file_path: Path):
-
-    try:
-        with open(file_path, "r") as f:
-            return json.load(f)
-    except (json.JSONDecodeError, FileNotFoundError):
-        return []
-
-
-def log_project(project_name: str, project_path: Path):
-
-    file_path = get_regitry_file()
-
-    data = load_projects(file_path)
-
-    if not any(p["Path"] == str(project_path.resolve()) for p in data):
-        data.append({"Project name": project_name,
-                     "Path": str(project_path.absolute())}
-                    )
-
-    with open(file_path, "w") as f:
-        json.dump(data, f, indent=2)
-
-
 args = get_cli_args()
-parsed_args = extract_args(args)
-print(
-    f'creating {parsed_args["template"]} project titled "{
-        parsed_args["project_name"]}"'
-)
-project_path = generate(parsed_args)
-log_project(parsed_args["project_name"], project_path)
+
+if args.command == "create":
+    parsed_args = extract_args(args)
+    project_path = generate(parsed_args)
+    add_project(parsed_args["project_name"], parsed_args["project_path"])
+
+elif args.command == "list":
+    list_projects()
