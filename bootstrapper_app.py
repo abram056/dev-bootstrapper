@@ -3,7 +3,7 @@ import re
 import json
 
 from cli.main import get_cli_args
-from core.generator import generate
+from core.generator import create_virtual_env, generate
 from core.registry import (
     add_project,
     list_projects,
@@ -54,7 +54,10 @@ args = get_cli_args()
 if args.command == "create":
     parsed_args = extract_args(args)
     project_path = generate(parsed_args)
-    add_project(parsed_args["project_name"], parsed_args["project_path"])
+    add_project(parsed_args["project_name"], project_path)
+
+    if args.with_venv:
+        create_virtual_env(project_path)
 
 elif args.command == "list":
     list_projects()

@@ -15,8 +15,8 @@ def generate(context: dict[str, str]) -> Path:
     output_dir = Path(project_name)
 
     for file in template_files:
-        relative_path = file['path']
-        content = file['content']
+        relative_path = file["path"]
+        content = file["content"]
 
         rendered_path = render_path(relative_path, context)
         rendered_content = render_content(content, context)
@@ -29,6 +29,7 @@ def generate(context: dict[str, str]) -> Path:
 
 
 def create_virtual_env(project_path: Path):
+    print("Creating virtual environment..")
     subprocess.run(["python", "-m", "venv", ".venv"], cwd=project_path)
 
 
@@ -39,5 +40,6 @@ def install_dependencies(project_path: Path):
     else:
         pip_path = ".venv/bin/pip"
 
-    subprocess.run([str(pip_path), "install", "-r",
-                   "requirements.txt"], cwd=project_path)
+    subprocess.run(
+        [str(pip_path), "install", "-r", "requirements.txt"], cwd=project_path
+    )

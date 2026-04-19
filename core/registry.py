@@ -40,6 +40,7 @@ def add_project(project_name: str, project_path: Path):
     data = load_projects()
     resolved_path = str(project_path.resolve())
 
+    print(f"Creating Project: '{project_name}'...")
     if not any(p["Path"] == str(project_path.resolve()) for p in data):
         data.append({"Project name": project_name, "Path": resolved_path})
 
