@@ -7,9 +7,18 @@ from pathlib import Path
 
 
 def render_content(content: str, context: dict[str, str]) -> str:
-    """Replace ``{{key}}`` placeholders in *content* with context values."""
+    """Replace placeholders in *content* with context values.
+
+    Two placeholder forms are recognised so that a template file can use
+    ``{{...}}`` as its own native syntax (Jinja, ERB, Go templates) without
+    colliding with the bootstrapper:
+
+    - ``{{key}}`` — standard form
+    - ``{#key#}`` — alternate form for files where ``{{...}}`` is reserved
+    """
     for key, value in context.items():
         content = content.replace(f"{{{{{key}}}}}", value)
+        content = content.replace(f"{{#{key}#}}", value)
     return content
 
 
@@ -21,6 +30,12 @@ def render_path(path: Path, context: dict[str, str]) -> Path:
     return Path(path_str)
 
 
+PLACEHOLDER_RE = re.compile(r"\{\{(\w+)\}\}|\{#(\w+)#\}")
+
+
 def find_unrendered(text: str) -> list[str]:
-    """Return any ``{{word}}`` placeholders left in *text* after rendering."""
-    return re.findall(r"\{\{(\w+)\}\}", text)
+    """Return any unresolved placeholders left in *text* after rendering.
+
+    Detects both the standard ``{{word}}`` and alternate ``{#word#}`` forms.
+    """
+    return [a or b for a, b in PLACEHOLDER_RE.findall(text)]
