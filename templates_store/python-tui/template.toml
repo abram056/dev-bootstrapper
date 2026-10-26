@@ -1,0 +1,13 @@
+name = "python-tui"
+language = "python"
+description = "Terminal UI application with Textual"
+
+[variables]
+python_version = "3.12"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["uv", "sync"]]

@@ -33,6 +33,10 @@ def camel_case(text: str) -> str:
     return p[0].lower() + p[1:] if p else ""
 
 
+def pascal_nounderscore(text: str) -> str:
+    return pascal_case(text).replace("_", "")
+
+
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
@@ -42,6 +46,7 @@ DERIVATIONS = {
     "kebab_case": kebab_case,
     "pascal_case": pascal_case,
     "camel_case": camel_case,
+    "pascal_nounderscore": pascal_nounderscore,
     "slug": slugify,
 }
 
@@ -232,6 +237,7 @@ def build_context(
         "package_name": package_name,
         "project_slug": kebab_case(project_name),
         "pascal_name": pascal_case(project_name),
+        "pascal_nounderscore": pascal_nounderscore(project_name),
         "camel_name": camel_case(project_name),
     }
 

@@ -1,0 +1,13 @@
+name = "python-data"
+language = "python"
+description = "Data science project with notebooks, src package, and scripts"
+
+[variables]
+python_version = "3.12"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["uv", "sync"]]
