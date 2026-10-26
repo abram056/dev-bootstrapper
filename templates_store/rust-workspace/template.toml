@@ -1,0 +1,13 @@
+name = "rust-workspace"
+language = "rust"
+description = "Rust cargo workspace with core, proto, and bin crates"
+
+[variables]
+rust_edition = "2021"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["cargo", "fetch", "--manifest-path", "Cargo.toml"]]

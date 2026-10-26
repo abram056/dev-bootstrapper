@@ -1,0 +1,14 @@
+[package]
+name = "{{project_slug}}-bin"
+version = "0.1.0"
+edition = "{{rust_edition}}"
+description = "Binary entry point for {{project_name}}"
+license = "MIT"
+
+[dependencies]
+{{project_slug}}-core = { path = "../{{project_slug}}-core" }
+{{project_slug}}-proto = { path = "../{{project_slug}}-proto" }
+
+[[bin]]
+name = "{{project_slug}}"
+path = "src/main.rs"

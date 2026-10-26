@@ -1,0 +1,13 @@
+name = "rust-bin"
+language = "rust"
+description = "Rust binary crate with tests and clippy-ready code"
+
+[variables]
+rust_edition = "2021"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["cargo", "fetch"]]

@@ -1,0 +1,13 @@
+name = "rust-tui"
+language = "rust"
+description = "Rust terminal UI using ratatui and crossterm"
+
+[variables]
+rust_edition = "2021"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["cargo", "fetch"]]

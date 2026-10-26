@@ -37,6 +37,10 @@ def pascal_nounderscore(text: str) -> str:
     return pascal_case(text).replace("_", "")
 
 
+def snake_nounderscore(text: str) -> str:
+    return snake_case(text).replace("_", "")
+
+
 def slugify(text: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")
 
@@ -47,6 +51,7 @@ DERIVATIONS = {
     "pascal_case": pascal_case,
     "camel_case": camel_case,
     "pascal_nounderscore": pascal_nounderscore,
+    "snake_nounderscore": snake_nounderscore,
     "slug": slugify,
 }
 
@@ -238,6 +243,8 @@ def build_context(
         "project_slug": kebab_case(project_name),
         "pascal_name": pascal_case(project_name),
         "pascal_nounderscore": pascal_nounderscore(project_name),
+        "snake_name": snake_case(project_name),
+        "snake_nounderscore": snake_nounderscore(project_name),
         "camel_name": camel_case(project_name),
     }
 

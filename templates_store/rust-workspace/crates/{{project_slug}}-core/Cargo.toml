@@ -1,0 +1,9 @@
+[package]
+name = "{{project_slug}}-core"
+version = "0.1.0"
+edition = "{{rust_edition}}"
+description = "Core logic for {{project_name}}"
+license = "MIT"
+
+[dependencies]
+{{project_slug}}-proto = { path = "../{{project_slug}}-proto" }

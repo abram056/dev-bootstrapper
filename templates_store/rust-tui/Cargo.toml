@@ -1,0 +1,10 @@
+[package]
+name = "{{project_slug}}"
+version = "0.1.0"
+edition = "{{rust_edition}}"
+description = "{{project_name}}"
+license = "MIT"
+
+[dependencies]
+ratatui = "0.26"
+crossterm = "0.27"

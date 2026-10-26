@@ -1,0 +1,8 @@
+[package]
+name = "{{project_slug}}-proto"
+version = "0.1.0"
+edition = "{{rust_edition}}"
+description = "Shared types and protocol definitions for {{project_name}}"
+license = "MIT"
+
+[dependencies]
