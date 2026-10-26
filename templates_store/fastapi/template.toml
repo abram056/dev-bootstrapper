@@ -1,0 +1,9 @@
+name = "fastapi"
+description = "FastAPI application"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["python", "-m", "venv", ".venv"]]

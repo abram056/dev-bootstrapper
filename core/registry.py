@@ -1,8 +1,8 @@
-from pathlib import Path
 import json
-import sys
 import os
 import subprocess
+import sys
+from pathlib import Path
 
 
 def get_regitry_file() -> Path:
@@ -23,7 +23,7 @@ def load_projects():
     file_path = get_regitry_file()
 
     try:
-        with open(file_path, "r") as file:
+        with open(file_path) as file:
             return json.load(file)
     except json.JSONDecodeError:
         return []
@@ -36,14 +36,20 @@ def save_projects(data):
         json.dump(data, file, indent=2)
 
 
-def add_project(project_name: str, project_path: Path):
+def add_project(
+    project_name: str,
+    project_path: Path,
+    template_name: str = "",
+):
     data = load_projects()
     resolved_path = str(project_path.resolve())
 
     print(f"Creating Project: '{project_name}'...")
-    if not any(p["Path"] == str(project_path.resolve()) for p in data):
-        data.append({"Project name": project_name, "Path": resolved_path})
-
+    if not any(p["Path"] == resolved_path for p in data):
+        record = {"Project name": project_name, "Path": resolved_path}
+        if template_name:
+            record["Template"] = template_name
+        data.append(record)
         save_projects(data)
 
 
@@ -56,6 +62,9 @@ def list_projects():
 
     for i, project in enumerate(data, start=1):
         print(f"{i}. Project Name: {project['Project name']}")
+        template = project.get("Template")
+        if template:
+            print(f"     Template: {template}")
         print(f"     Project Path: {project['Path']}")
 
 
