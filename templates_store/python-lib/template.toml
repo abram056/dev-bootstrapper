@@ -1,0 +1,14 @@
+name = "python-lib"
+aliases = ["python"]
+language = "python"
+description = "Python library with src-layout, uv, and modern tooling"
+
+[variables]
+python_version = "3.12"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["uv", "sync"]]

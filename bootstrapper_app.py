@@ -29,10 +29,9 @@ def cmd_templates() -> None:
         return
 
     print("Available templates:\n")
-    name_width = max(len(name) for name, _, _ in rows)
-    lang_width = max(len(lang) for _, lang, _ in rows)
+    col = max(len(name) for name, _, _ in rows)
     for name, lang, desc in rows:
-        print(f"  {name:<{name_width}}  {lang:<{lang_width}}  {desc}")
+        print(f"  {name:<{col}}  {lang}  {desc}")
 
 
 def cmd_create(args) -> None:

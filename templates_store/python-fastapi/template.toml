@@ -1,0 +1,21 @@
+name = "python-fastapi"
+aliases = ["fastapi"]
+language = "python"
+description = "FastAPI application with Docker, tests, and modern tooling"
+
+[variables]
+python_version = "3.12"
+
+[options]
+docker = { default = true, help = "Include Dockerfile and .dockerignore" }
+
+[files]
+exclude = ["template.toml"]
+
+[[files.rules]]
+include = ["Dockerfile", ".dockerignore"]
+when = "docker"
+
+[commands]
+git = true
+install = [["uv", "sync"]]
