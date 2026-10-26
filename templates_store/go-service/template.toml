@@ -1,0 +1,20 @@
+name = "go-service"
+language = "go"
+description = "Go HTTP service with routing, health checks, and Docker support"
+
+[variables]
+go_version = "1.22"
+
+[options]
+docker = { default = true, help = "Include a Dockerfile" }
+
+[files]
+exclude = ["template.toml"]
+
+[[files.rules]]
+include = ["Dockerfile"]
+when = "docker"
+
+[commands]
+git = true
+install = [["go", "mod", "tidy"]]

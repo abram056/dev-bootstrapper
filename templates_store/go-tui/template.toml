@@ -1,0 +1,13 @@
+name = "go-tui"
+language = "go"
+description = "Go terminal UI built with the Bubble Tea framework"
+
+[variables]
+go_version = "1.22"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["go", "mod", "tidy"]]

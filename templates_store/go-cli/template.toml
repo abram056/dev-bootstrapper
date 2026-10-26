@@ -1,0 +1,13 @@
+name = "go-cli"
+language = "go"
+description = "Go command-line tool with subcommand structure and colocated tests"
+
+[variables]
+go_version = "1.22"
+
+[files]
+exclude = ["template.toml"]
+
+[commands]
+git = true
+install = [["go", "mod", "tidy"]]
